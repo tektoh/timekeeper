@@ -1,0 +1,10 @@
+div.timer(ng-controller='TimerCtrl')
+  div.fs-nav(ng-show='fullscreenEnabled')
+    a.btn.btn-link(href='#', ng-click='fullscreen') Full Screen
+  div.fs-container
+    div.timer(ng-class="timerClass") {{min|zeropad}}:{{sec|zeropad}}
+    div.timer-info.text-center {{infoText}}
+    div.progress.progress-striped.active
+      div.progress-bar(ng-class='progressClass', aria-valuenow='{{progress}}', aria-valuemin='0' aria-valuemax='100')
+    div.phase
+      a.btn.btn-default.btn-lg(href='#', ng-click='next()' {{buttonText}}
