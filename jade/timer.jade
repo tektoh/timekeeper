@@ -1,0 +1,20 @@
+div.timer(ng-controller='TimerCtrl as timer')
+  div.timer-fs-nav(ng-show='timer.fullscreenEnabled')
+    a.btn.btn-link(href='#', ng-click='timer.fullscreen') Full Screen
+  div.timer-fs-container
+    div.timer(ng-class="timer.timerClass") {{timer.min|zeropad}}:{{timer.sec|zeropad}}
+    div.timer-info.text-center {{timer.infoText}}
+    div.progress.progress-striped.active
+      div.progress-bar(ng-class='timer.progressClass', aria-valuenow='{{timer.progress}}', aria-valuemin='0' aria-valuemax='100')
+    div.text-center
+      a.btn.btn-default.btn-lg(href='#', ng-click='timer.next()' {{timer.buttonText}}
+    form.#settings.form-horizontal(ng-submit='timer.reset()'
+      div.container
+        div.form-group
+          label.col-sm-4.control-label(for='timerPresentationMin') プレゼン時間
+          div.col-sm-8
+            select#timerPresentationMin.form-control(ng-options='opts.min as opts.label for opts in timer.presentations' ng-change='timer.reset()' ng-disabled='!timer.isReady()')
+        div.form-group
+          label.col-sm-4.control-label(for='timerDiscussionMin') ディスカッション時間
+          div.col-sm-8
+            select#timerDiscussionMin.form-control(ng-options='opts.min as opts.label for opts in timer.discussions' ng-change='timer.reset()' ng-disabled='!timer.isReady()')
